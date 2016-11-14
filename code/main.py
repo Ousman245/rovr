@@ -74,10 +74,16 @@ class GetAllData(webapp2.RequestHandler):
         return self.response.out.write(json.encode(data))
 
 
+class Bark(webapp2.RequestHandler):
+    def get(self):
+            self.response.headers['Content-Type'] = 'text/plain'
+            return self.response.out.write('woof')
+
 app = webapp2.WSGIApplication([
     ('/create/walker', CreateWalker),
     ('/create/owner', CreateOwner),
     ('/create/request', CreateRequest),
     ('/delete/request', DeleteRequest),
     ('/get', GetAllData),
+    ('/bark', Bark),
 ])
